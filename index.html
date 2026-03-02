@@ -1,121 +1,182 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verificação de Segurança</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Preparando Oferta...</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(180deg, #ffffff 0%, #fff9c4 100%);
             height: 100vh;
+            font-family: 'Inter', sans-serif;
+            /* FUNDO: Degradê Azul Gelo / Azul Suave */
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-
-        .container {
-            background: white;
-            padding: 40px; /* Aumentei um pouco o padding interno */
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
             text-align: center;
-            max-width: 450px;
+            color: #0c4a6e; /* Texto azul marinho */
+        }
+
+        /* Partículas: Azul Celeste translúcido */
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(14, 165, 233, 0.2);
+            border-radius: 50%;
+            animation: float 8s linear infinite;
+            filter: blur(1px);
+        }
+
+        @keyframes float {
+            from { transform: translateY(110vh) scale(0.5); opacity: 0; }
+            to { transform: translateY(-10vh) scale(1.2); opacity: 1; }
+        }
+
+        .loader-box {
             width: 90%;
-            box-sizing: border-box; /* Garante que o padding não aumente o tamanho total */
+            max-width: 420px;
+            /* BOX: Branco Neve */
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 40px 26px;
+            box-shadow: 0 20px 40px rgba(12, 74, 110, 0.08);
+            animation: fadeUp 1s ease;
+            z-index: 2;
+            border: 1px solid rgba(14, 165, 233, 0.1);
         }
 
-        .status-check {
-            color: #2e7d32;
-            font-weight: bold;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-size: 1.1em;
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(35px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Simulação do Captcha */
-        .captcha-box {
-            background: #f9f9f9;
-            border: 1px solid #d3d3d3;
-            border-radius: 3px;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin: 0 auto 25px auto; /* Centralizado e com margem inferior */
-            cursor: pointer;
-            max-width: 350px; /* Largura máxima para o captcha */
+        .title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 34px;
+            font-weight: 800;
+            /* TÍTULO: Azul Royal Profundo */
+            color: #0284c7;
+            margin-bottom: 8px;
         }
 
-        .captcha-box:hover { background: #f0f0f0; }
-
-        .checkbox {
-            width: 24px;
-            height: 24px;
-            border: 2px solid #c1c1c1;
-            border-radius: 2px;
-            background: white;
-            transition: background 0.2s;
+        .subtitle {
+            font-size: 16px;
+            color: #64748b;
+            margin-bottom: 26px;
         }
 
-        /* Botão Corrigido e Regulado */
-        .btn-access {
-            background: #ffcc00;
-            color: #333;
-            border: none;
-            padding: 15px 30px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%; /* Ocupa 100% do espaço disponível... */
-            max-width: 350px; /* ...mas não passa desse tamanho, alinhando com o captcha */
-            margin: 0 auto; /* Centraliza o botão */
-            transition: transform 0.2s, background 0.3s;
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #f1f5f9;
+            border-radius: 30px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            /* BARRA: Gradiente Azul Elétrico para Índigo */
+            background: linear-gradient(90deg, #38bdf8, #0ea5e9, #0284c7);
+            border-radius: 30px;
+            transition: width 0.3s ease;
+        }
+
+        .percent-text {
+            margin-top: 12px;
+            font-size: 22px;
+            font-weight: 700;
+            color: #0284c7;
+            animation: pulse 1.2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        .link-btn {
+            display: block;
+            margin-top: 30px;
+            padding: 16px 0;
+            /* BOTÃO: Azul Intenso */
+            background: #0ea5e9;
+            color: #ffffff;
+            border-radius: 16px;
+            font-size: 17px;
+            font-weight: 800;
+            font-family: 'Poppins', sans-serif;
             text-decoration: none;
-            display: block; /* Garante que as margens funcionem */
-            box-sizing: border-box;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .btn-access:hover {
-            background: #ffb300;
-            transform: scale(1.02);
-        }
-
-        .footer-text {
-            font-size: 12px;
-            color: #888;
-            margin-top: 20px;
+        .link-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(14, 165, 233, 0.4);
+            background: #0284c7;
         }
     </style>
 </head>
 <body>
+    <script>
+        // Gerador de partículas azul celeste
+        for (let i = 0; i < 20; i++) {
+            const p = document.createElement("div");
+            p.className = "particle";
+            p.style.left = Math.random() * 100 + "vw";
+            p.style.animationDuration = (5 + Math.random() * 7) + "s";
+            p.style.opacity = Math.random() * 0.5;
+            document.body.appendChild(p);
+        }
+    </script>
 
-<div class="container">
-    <div class="status-check">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-        Verificação de carregamento concluída
-    </div>
+    <div class="loader-box">
+        <div class="title">MEGA FEIRÃO</div>
+        <div class="subtitle">Buscando as melhores ofertas para você...</div>
 
-    <div class="captcha-box" onclick="document.getElementById('check').innerHTML = '✅'; document.getElementById('check').style.background = 'transparent'; document.getElementById('check').style.border = 'none';">
-        <div style="display: flex; align-items: center; gap: 15px;">
-            <div id="check" class="checkbox"></div>
-            <span>Sou humano</span>
+        <div class="progress-bar">
+            <div id="progress" class="progress-fill"></div>
         </div>
-        <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" width="30" alt="reCAPTCHA">
+
+        <div id="percent" class="percent-text">0%</div>
+
+        <a href="https://peppy-cassata-d69003.netlify.app/" class="link-btn">
+            CONTINUAR
+        </a>
     </div>
 
-    <a href="https://reliable-crumble-ddd534.netlify.app/" class="btn-access">
-        ACESSAR AGORA
-    </a>
+    <script>
+        let percent = 0;
+        const bar = document.getElementById("progress");
+        const text = document.getElementById("percent");
 
-    <p class="footer-text">Conexão segura via criptografia de ponta a ponta.</p>
-</div>
+        const loading = setInterval(() => {
+            if (percent < 90) {
+                percent += Math.floor(Math.random() * 3) + 1;
+            } else if (percent < 100) {
+                percent += 1;
+            }
 
+            if (percent > 100) percent = 100;
+
+            bar.style.width = percent + "%";
+            text.innerText = percent + "%";
+                        
+            if (percent >= 100) {
+                clearInterval(loading);
+                text.innerText = "OFERTA LIBERADA!";
+                text.style.color = "#0369a1"; 
+            }
+        }, 60);
+    </script>
 </body>
 </html>
